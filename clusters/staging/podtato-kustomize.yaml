@@ -1,0 +1,34 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: podtato-kust
+  namespace: flux-system
+spec:
+  healthChecks:
+  - kind: Deployment
+    name: podtato-head-entry
+    namespace: podtato-kubectl
+  - kind: Deployment
+    name: podtato-head-hat
+    namespace: podtato-kubectl
+  - kind: Deployment
+    name: podtato-head-left-leg
+    namespace: podtato-kubectl
+  - kind: Deployment
+    name: podtato-head-left-arm
+    namespace: podtato-kubectl
+  - kind: Deployment
+    name: podtato-head-right-leg
+    namespace: podtato-kubectl
+  - kind: Deployment
+    name: podtato-head-right-arm
+    namespace: podtato-kubectl
+  interval: 1m0s
+  path: ./podtato
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: instavote
+  targetNamespace: podtato-kubectl
+  timeout: 2m0s
